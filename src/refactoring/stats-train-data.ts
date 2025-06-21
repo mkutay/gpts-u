@@ -1,6 +1,6 @@
 import { encoding_for_model } from "tiktoken";
 
-import { DEFAULT_MODEL, SYSTEM_MESSAGE } from "@/lib/config.ts";
+import { DEFAULT_MODEL } from "@/lib/config.ts";
 import { TrainingData } from "@/lib/types.ts";
 
 interface Stats {
@@ -19,7 +19,6 @@ interface Stats {
 }
 
 export function calculateStats(trainingData: TrainingData[]): Stats {
-  const systemMessageLength = SYSTEM_MESSAGE.length;
   let totalLength = 0;
   let maxLength = 0;
   let minLength = 1_000_000;
@@ -29,7 +28,7 @@ export function calculateStats(trainingData: TrainingData[]): Stats {
   const encoder = encoding_for_model(DEFAULT_MODEL);
   let totalTokens = 0;
   let maxTokens = 0;
-  let minTokens = 1_000_000;
+  let minTokens = 5_000_000;
   const tokenCounts: number[] = [];
 
   for (const data of trainingData) {
@@ -42,12 +41,6 @@ export function calculateStats(trainingData: TrainingData[]): Stats {
       const messageTokens = encoder.encode(message.content).length;
       contextTokens += messageTokens;
     }
-    
-    // Subtract system message length (as in original Python code)
-    contextLength -= systemMessageLength;
-    // Subtract system message tokens
-    const systemTokens = encoder.encode(SYSTEM_MESSAGE).length;
-    contextTokens -= systemTokens;
     
     totalLength += contextLength;
     maxLength = Math.max(maxLength, contextLength);

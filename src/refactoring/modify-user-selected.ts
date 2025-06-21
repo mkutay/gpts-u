@@ -1,6 +1,5 @@
 import { TrainingData } from "@/lib/types.ts";
-
-const ASSISTANT_MESSAGE_RATIO = 0.37;
+import { ASSISTANT_MESSAGE_RATIO } from "@/lib/config.ts";
 
 export function modifyUserSelected(trainingData: TrainingData[]) {
   const finalTrainingData: TrainingData[] = [];

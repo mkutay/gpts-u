@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "create-dataset": "deno run --allow-read --allow-write src/create-dataset.ts",
+    "create-dataset": "deno run --allow-read --allow-write --allow-env --env-file src/create-dataset.ts",
     "server": "deno run --allow-net --allow-read --allow-env --allow-sys --env-file src/server.ts",
     "train": "deno run --allow-net --allow-read --allow-env --env-file src/train/openai.ts"
   },

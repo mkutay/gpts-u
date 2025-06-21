@@ -172,11 +172,11 @@ export class Bot {
       this.openai.chat.completions.create({
         model: this.fineTunedModel,
         messages: messages,
-        temperature: 0.88,
+        temperature: 0.85,
         max_completion_tokens: 4096,
         top_p: 1,
-        frequency_penalty: 0.6,
-        presence_penalty: 0,
+        frequency_penalty: 0.5,
+        presence_penalty: 0.2,
         store: true,
         response_format: {
           type: "text",
