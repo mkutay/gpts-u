@@ -29,11 +29,6 @@ ENV MODEL_SUFFIX="chat-model"
 # Expose port (if needed for health checks or webhooks)
 EXPOSE 3000
 
-# Create a non-root user for security
-RUN addgroup --system --gid 1001 deno
-RUN adduser --system --uid 1001 deno
-USER deno
-
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD deno eval "console.log('Health check passed')" || exit 1
