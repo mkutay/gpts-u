@@ -1,4 +1,4 @@
-import { AFTER, GRUOPED_DIFF_THRESHOLD } from "@/lib/config.ts";
+import { AFTER, GROUPED_DIFF_THRESHOLD } from "@/lib/config.ts";
 import { GroupedMessage, Message } from "@/lib/types.ts";
 
 export function groupMessages(messages: Message[]) {
@@ -28,7 +28,7 @@ export function groupMessages(messages: Message[]) {
     const lastMessage = groupedMessages[groupedMessages.length - 1];
     
     // Group consecutive messages from same author within time threshold
-    if (message.author === lastMessage.author && message.time - lastMessage.lastTime < GRUOPED_DIFF_THRESHOLD) {
+    if (message.author === lastMessage.author && message.time - lastMessage.lastTime < GROUPED_DIFF_THRESHOLD) {
       lastMessage.messages.push(message.text);
       lastMessage.lastTime = message.time;
     } else {

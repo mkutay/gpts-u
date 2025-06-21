@@ -19,10 +19,17 @@ export interface Context {
   lastTime: number; // microseconds since epoch of the last message in the context
 }
 
-export interface ChatMessage {
-  role: "system" | "user" | "assistant";
+export type ChatMessage = {
+  role: "system";
   content: string;
-  name?: string;
+} | {
+  role: "assistant";
+  content: string;
+  name: Username;
+} | {
+  role: "user";
+  content: string;
+  name: Username;
 }
 
 export interface TrainingData {
@@ -57,4 +64,23 @@ export const USERNAMES: Record<string, Username> = {
   "~ meh": "Emir",
   "Muhammet Faik Ekiciler": "Faik",
   "Mehmet Kutay Bozkurt": "Kutay",
+
+  // discord usernames
+  "erray": "Eray",
+  "weobe": "Duru",
+  "kutaja": "Kutay",
+  "usuyus": "Usuyus",
+  "erkam3": "Erkam",
+  "dnaux": "Umit",
+  "barray": "Baray",
+  "ber.ry": "Berr",
+  "mfaik": "Faik",
+  "_sirac": "Sirac",
+  "mychecksdead": "Mert",
+  "lizael": "Bedirhan",
+  "pr0mers": "Omer",
+  "nuzunuzu": "Faik",
+  "vd37": "Vedat",
+  "skurrl": "Emir",
+  "okaragul": "Ozgur",
 };

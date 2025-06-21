@@ -1,5 +1,6 @@
-import { ASSISTANT, CONTEXT_DIFF_THRESHOLD, SYSTEM_MESSAGE, TARGET_USER, USER } from "@/lib/config.ts";
-import { TrainingData, ChatMessage, GroupedMessage, Context } from "@/lib/types.ts";
+import { CONTEXT_DIFF_THRESHOLD, SYSTEM_MESSAGE } from "@/lib/config.ts";
+import { TrainingData, GroupedMessage, Context } from "@/lib/types.ts";
+import { converContextToChatFormat } from "../lib/utils.ts";
 
 export function createTrainingData(messages: GroupedMessage[]) {
   const trainingData: TrainingData[] = [];
@@ -47,26 +48,7 @@ export function createTrainingData(messages: GroupedMessage[]) {
 }
 
 function processContext(context: Context): TrainingData | null {
-  const chatMessages: ChatMessage[] = [];
-  let hasAssistant = false;
-
-  // Convert messages to chat format
-  for (const message of context.messages) {
-    if (message.author === TARGET_USER) {
-      chatMessages.push({
-        role: ASSISTANT,
-        content: formatGroupedMessage(message),
-        name: TARGET_USER,
-      });
-      hasAssistant = true;
-    } else {
-      chatMessages.push({
-        role: USER,
-        content: formatGroupedMessage(message),
-        name: message.author,
-      });
-    }
-  }
+  const { chatMessages, hasAssistant } = converContextToChatFormat(context);
 
   // Skip if no assistant messages
   if (!hasAssistant) {
@@ -74,12 +56,12 @@ function processContext(context: Context): TrainingData | null {
   }
 
   // Remove leading assistant messages
-  while (chatMessages.length > 0 && chatMessages[0].role === ASSISTANT) {
+  while (chatMessages.length > 0 && chatMessages[0].role === "assistant") {
     chatMessages.shift();
   }
 
   // Remove trailing non-assistant messages
-  while (chatMessages.length > 0 && chatMessages[chatMessages.length - 1].role !== ASSISTANT) {
+  while (chatMessages.length > 0 && chatMessages[chatMessages.length - 1].role !== "assistant") {
     chatMessages.pop();
   }
 
@@ -102,8 +84,4 @@ function processContext(context: Context): TrainingData | null {
       ...chatMessages,
     ],
   };
-}
-
-function formatGroupedMessage(message: GroupedMessage): string {
-  return message.messages.join("\n");
 }
