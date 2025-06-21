@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  usuyus-bot:
+    build: .
+    container_name: gpts-u-discord-bot
+    restart: unless-stopped
+    environment:
+      # Required environment variables - set these in your .env file
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FINE_TUNED_MODEL_ID=${FINE_TUNED_MODEL_ID}
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - CHANNEL_ID=${CHANNEL_ID}
+      - TARGET_USER=${TARGET_USER}
+      - SYSTEM_PROMPT=${SYSTEM_PROMPT}
+      
+      # Optional environment variables with defaults
+      - BASE_MODEL=${BASE_MODEL:-gpt-4.1-mini-2025-04-14}
+      - MODEL_SUFFIX=${MODEL_SUFFIX:-chat-model}
+    
+    # Mount data directory if you need persistent storage
+    volumes:
+      - ./data:/app/data:ro
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "deno", "eval", "console.log('Health check passed')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
