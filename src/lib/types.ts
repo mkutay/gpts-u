@@ -36,13 +36,14 @@ export interface TrainingData {
   messages: ChatMessage[];
 }
 
-export type Username = "Eray" | "Duru" | "Mert" | "Erkam" | "Ozgur" | "Baray" | "Berr" | "Umit" | "Olcay" | "Emir" | "Fatih" | "Bedirhan" | "Halit" | "Ohasanov" | "Omer" | "Sirac" | "Tunay" | "Usuyus" | "Vedat" | "Berke" | "Kutay" | "Faik";
+export type Username = "Eray" | "Duru" | "Mert" | "Erkam" | "Ozgur" | "Baray" | "Berr" | "Umit" | "Olcay" | "Emir" | "Fatih" | "Bedirhan" | "Halit" | "Ohasanov" | "Omer" | "Sirac" | "Tunay" | "Usuyus" | "Vedat" | "Berke" | "Kutay" | "Faik" | "Kivanc" | "Grup" | "Abdulhamid";
 
 export const USERNAMES: Record<string, Username> = {
   "cengiz eray aslan": "Eray",
   "duru ozer": "Duru",
   "mert koksal": "Mert",
   "erkam uysal": "Erkam",
+  "erkam": "Erkam",
   "ozgur karagul": "Ozgur",
   "baray efe rafioglu": "Baray",
   "berr": "Berr",
@@ -60,10 +61,13 @@ export const USERNAMES: Record<string, Username> = {
   "vedat sengun": "Vedat",
   "berke inan tol": "Berke",
   "Kutay Bozkurt": "Kutay",
-  "~ duru": "Duru",
-  "~ meh": "Emir",
+  "~ duru": "Duru",
+  "~ meh": "Emir",
   "Muhammet Faik Ekiciler": "Faik",
   "Mehmet Kutay Bozkurt": "Kutay",
+  "~ Kıvanç Tok": "Kivanc",
+  "grup?": "Grup",
+  "‪+90 551 193 68 57‬": "Abdulhamid",
 
   // discord usernames
   "erray": "Eray",

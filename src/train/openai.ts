@@ -143,7 +143,7 @@ export class OpenAIFineTuner {
     
     console.log(`Fine-tuning job started: ${job.id}`);
     console.log("You can monitor the job status with:");
-    console.log(`deno run --allow-net --allow-env src/train/openai.ts status ${job.id}`);
+    console.log(`deno run train status ${job.id}`);
     
     return job;
   }

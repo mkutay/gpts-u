@@ -46,7 +46,7 @@ function processLine(line: string): Message | null {
       author += line[i];
     }
 
-    message.author = USERNAMES[author] || author;
+    message.author = getAuthor(author);
 
     if (attachment === 0) {
       let text = "";
@@ -91,7 +91,7 @@ function processLine(line: string): Message | null {
     author += line[i];
   }
 
-  message.author = USERNAMES[author] || author;
+  message.author = getAuthor(author);
   message.text = line.slice(colonIndex + 2, line.length - 1);
   message.type = "normal";
 
@@ -126,4 +126,12 @@ export function parseChat(lines: string[]): Message[] {
   }
 
   return messages;
+}
+
+function getAuthor(username: string) {
+  const auth = USERNAMES[username]
+  if (!auth) {
+    console.warn(`Unknown username: "${username}"`);
+  }
+  return auth;
 }
