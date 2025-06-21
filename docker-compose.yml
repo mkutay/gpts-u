@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  usuyus-bot:
+  gpts-u-discord-bot:
     build: .
     container_name: gpts-u-discord-bot
     restart: unless-stopped

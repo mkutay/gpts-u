@@ -1,5 +1,5 @@
-# Use the official Deno image
-FROM denoland/deno:2.1.4
+# Use the latest official Deno image
+FROM denoland/deno:latest
 
 # Set the working directory
 WORKDIR /app
@@ -10,8 +10,8 @@ COPY deno.json deno.lock ./
 # Copy source code
 COPY src/ ./src/
 
-# Cache dependencies
-RUN deno cache --lock=deno.lock src/server.ts
+# Cache dependencies - remove lock file constraint to avoid version issues
+RUN deno cache src/server.ts
 
 # Set environment variables with default values
 # These should be overridden at runtime with actual values
