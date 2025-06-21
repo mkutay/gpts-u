@@ -1,4 +1,5 @@
 data
+system-prompts
 
 .env
 .env.local

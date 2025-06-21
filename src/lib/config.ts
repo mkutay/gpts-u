@@ -17,9 +17,9 @@ export const TARGET_USER: Username = getRequiredEnvVar("TARGET_USER");
 export const CHANNEL_ID: string = getRequiredEnvVar("CHANNEL_ID");
 
 export const CONTEXT_DIFF_THRESHOLD = 5 * 60 * 1_000_000; // 5 minutes in microseconds
-export const GROUPED_DIFF_THRESHOLD = 4 * 60 * 1_000_000; // 4 minutes in microseconds
+export const GROUPED_DIFF_THRESHOLD = 2 * 60 * 1_000_000; // 4 minutes in microseconds
 export const AFTER = timestampMicrosecond(new Date(2024, 6, 1)); // 1st Jul 2024 (month is 0-indexed)
 export const REALTIME_GROUPED_DIFF_THRESHOLD = 7 * 1_000_000; // 7 seconds in microseconds
-export const ASSISTANT_MESSAGE_RATIO = 0.37;
+export const ASSISTANT_MESSAGE_RATIO = 0.42;
 
 export const DEFAULT_MODEL = "gpt-4.1-mini-2025-04-14";
