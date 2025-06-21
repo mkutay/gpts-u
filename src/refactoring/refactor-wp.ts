@@ -1,5 +1,5 @@
-import { Message, USERNAMES } from "./types.ts";
-import { parseDateTime, timestampMicrosecond } from "./utils.ts";
+import { Message, USERNAMES } from "@/lib/types.ts";
+import { parseDateTime, timestampMicrosecond } from "@/lib/utils.ts";
 
 function processLine(line: string): Message | null {
   if (line === "") {

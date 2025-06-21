@@ -1,5 +1,5 @@
-import { ASSISTANT, CONTEXT_DIFF_THRESHOLD, SYSTEM_MESSAGE, TARGET_USER, USER } from "./config.ts";
-import { TrainingData, ChatMessage, GroupedMessage, Context } from "./types.ts";
+import { ASSISTANT, CONTEXT_DIFF_THRESHOLD, SYSTEM_MESSAGE, TARGET_USER, USER } from "@/lib/config.ts";
+import { TrainingData, ChatMessage, GroupedMessage, Context } from "@/lib/types.ts";
 
 export function createTrainingData(messages: GroupedMessage[]) {
   const trainingData: TrainingData[] = [];

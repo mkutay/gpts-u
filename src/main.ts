@@ -3,33 +3,33 @@ import { groupMessages } from "./refactoring/group-wp-chats.ts";
 import { modifyUserSelected } from "./refactoring/modify-user-selected.ts";
 import { parseChat } from "./refactoring/refactor-wp.ts";
 import { printStats } from "./refactoring/stats-train-data.ts";
-import { Message } from "./refactoring/types.ts";
+import { Message } from "./lib/types.ts";
 
 if (import.meta.main) {
-  await Deno.mkdir("./refactored-chats", { recursive: true });
+  await Deno.mkdir("./data/refactored-chats", { recursive: true });
 
-  const chatText = await Deno.readTextFile("./original-chats/chat.txt");
+  const chatText = await Deno.readTextFile("./data/original-chats/chat.txt");
   const chatLines = chatText.split("\n");
 
   const chatMessages: Message[] = parseChat(chatLines);
 
-  const chatOutputPath = "./refactored-chats/pure-wp.json";
+  const chatOutputPath = "./data/refactored-chats/pure-wp.json";
   await saveJson(chatOutputPath, chatMessages);
   console.log(`Parsed ${chatMessages.length} messages and saved to ${chatOutputPath}`);
 
   const gruopedMessages = groupMessages(chatMessages);
 
-  const groupedOutputPath = "./refactored-chats/grouped-wp.json";
+  const groupedOutputPath = "./data/refactored-chats/grouped-wp.json";
   await saveJson(groupedOutputPath, gruopedMessages);
   console.log(`Grouped messages saved to ${groupedOutputPath}`);
 
   const trainingData = createTrainingData(gruopedMessages);
 
-  await saveText("./refactored-chats/user-train-data.jsonl", trainingData.map(data => JSON.stringify(data)).join("\n"));
+  await saveText("./data/refactored-chats/user-train-data.jsonl", trainingData.map(data => JSON.stringify(data)).join("\n"));
   console.log(`Created training data with ${trainingData.length} contexts.`);
 
   const finalTrainingData = modifyUserSelected(trainingData);
-  await saveText("./refactored-chats/final-train-data.jsonl", finalTrainingData.map(data => JSON.stringify(data)).join("\n"));
+  await saveText("./data/refactored-chats/final-train-data.jsonl", finalTrainingData.map(data => JSON.stringify(data)).join("\n"));
   console.log(`Modified training data to ${finalTrainingData.length} final examples.`);
 
   printStats(finalTrainingData);

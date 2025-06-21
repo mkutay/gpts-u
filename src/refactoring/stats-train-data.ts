@@ -1,5 +1,5 @@
-import { SYSTEM_MESSAGE } from "./config.ts";
-import { TrainingData } from "./types.ts";
+import { SYSTEM_MESSAGE } from "@/lib/config.ts";
+import { TrainingData } from "@/lib/types.ts";
 
 interface Stats {
   average: number;

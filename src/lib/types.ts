@@ -1,7 +1,7 @@
 export interface Message {
   text: string;
   time: number; // microseconds since epoch
-  author: string;
+  author: Username;
   type: "normal" | "system" | "attachment" | "edited";
 }
 
@@ -9,7 +9,7 @@ export interface GroupedMessage {
   messages: string[];
   firstTime: number; // microseconds since epoch of the first message in the group
   lastTime: number; // microseconds since epoch of the last message in the group
-  author: string;
+  author: Username;
   type: "normal" | "edited";
 }
 

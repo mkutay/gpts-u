@@ -1,5 +1,5 @@
-import { AFTER, GRUOPED_DIFF_THRESHOLD } from "./config.ts";
-import { GroupedMessage, Message } from "./types.ts";
+import { AFTER, GRUOPED_DIFF_THRESHOLD } from "@/lib/config.ts";
+import { GroupedMessage, Message } from "@/lib/types.ts";
 
 export function groupMessages(messages: Message[]) {
   const groupedMessages: GroupedMessage[] = [];

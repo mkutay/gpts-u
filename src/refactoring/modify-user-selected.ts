@@ -1,4 +1,4 @@
-import { TrainingData } from "./types.ts";
+import { TrainingData } from "@/lib/types.ts";
 
 const ASSISTANT = "assistant";
 
