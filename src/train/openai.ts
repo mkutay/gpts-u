@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-import { DEFAULT_MODEL } from "@/lib/config.ts";
+import { DEFAULT_MODEL, TARGET_USER } from "@/lib/config.ts";
 
 export interface FineTuningJob {
   id: string;
@@ -156,8 +156,8 @@ if (import.meta.main) {
   
   if (args.length === 0) {
     // Default: upload and start training
-    const trainingFilePath = "./data/refactored-chats/final-train-data.jsonl";
-    const job = await fineTuner.trainModel(trainingFilePath, DEFAULT_MODEL, "usuyus");
+    const trainingFilePath = "./data/refactored-chats/final-train-data-clean.jsonl";
+    const job = await fineTuner.trainModel(trainingFilePath, DEFAULT_MODEL, TARGET_USER);
     console.log("Training job created:", job);
   } else if (args[0] === "status" && args[1]) {
     // Check job status

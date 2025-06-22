@@ -3,7 +3,9 @@ import { groupMessages } from "./refactoring/group-wp-chats.ts";
 import { modifyUserSelected } from "./refactoring/modify-user-selected.ts";
 import { parseChat } from "./refactoring/refactor-wp.ts";
 import { printStats } from "./refactoring/stats-train-data.ts";
+import { saveAllMessages } from "./refactoring/get-all-messages.ts";
 import { Message } from "./lib/types.ts";
+import { TARGET_USER } from "./lib/config.ts";
 
 if (import.meta.main) {
   await Deno.mkdir("./data/refactored-chats", { recursive: true });
@@ -16,6 +18,8 @@ if (import.meta.main) {
   const chatOutputPath = "./data/refactored-chats/pure-wp.json";
   await saveJson(chatOutputPath, chatMessages);
   console.log(`Parsed ${chatMessages.length} messages and saved to ${chatOutputPath}`);
+
+  await saveAllMessages(chatMessages, TARGET_USER);
 
   const gruopedMessages = groupMessages(chatMessages);
 
