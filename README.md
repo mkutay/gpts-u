@@ -19,3 +19,5 @@ deno run server # Run the Discord bot
 ```
 
 You might have to change some settings to your liking in `src/lib/config.ts` for the best result.
+
+Finally, you can use the given Dockerfile to deploy the Discord bot on a server.
